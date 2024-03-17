@@ -4,7 +4,11 @@
     gap: 15px;
     width: 100%;
     cursor: pointer;
-
+    label {
+        font-size: 16px;
+        font-weight: 600;
+        color: #000;
+    }
     select {
         padding: 10px;
         width: 100%;

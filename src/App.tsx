@@ -47,7 +47,7 @@ function App() {
                 </div>
                 <div className="lastUpdatedInformation">
                     <p>
-                        <u>Euro</u> to <u>US Dollar</u> conversion — Last updated Dec 15, 2022, 19:17 UTC
+                        <u>Euro</u> to <u>US Dollar</u> conversion — Last updated Dec 15, 2022,  19:17 UTC
                     </p>
                 </div>
             </main>

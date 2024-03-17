@@ -5,7 +5,7 @@
 }
 
 :root {
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-family: "Inter", sans-serif;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -20,10 +20,12 @@ body {
 .header {
     background-color: #0e1342;
     height: 60px;
-    color: #fff;
     padding: 20px;
     &__title {
         font-size: 22px;
+        font-weight: 600;
+        line-height: 20px;
+        color: #fff;
     }
 }
 
@@ -36,7 +38,8 @@ body {
         text-align: center;
         padding: 25px 0;
         h1 {
-            font-size: 30px;
+            font-size: 32px;
+            font-weight: 600;
             color: #fff;
         }
     }
@@ -59,25 +62,26 @@ body {
 .convertionInfo {
     display: flex;
     flex-direction: column;
-    gap: 10px;
 }
 
 .convertionByFrom {
     font-size: 24px;
     font-weight: 600;
+    line-height: 36px;
     color: #000000;
 }
 
 .convertionByTo {
     font-size: 16px;
     font-weight: 400;
+    line-height: 36px;
     color: #757575;
 }
 
 .lastUpdatedInformation {
     padding: 10px 0;
     p {
-        color: #c3c3c3;
+        color: #000;
         font-size: 12px;
         font-weight: 300;
         line-height: 1.5;
