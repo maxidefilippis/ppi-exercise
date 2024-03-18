@@ -1,5 +1,4 @@
 import React from 'react';
-
 import './index.scss';
 
 interface DropdownProps {
@@ -9,7 +8,6 @@ interface DropdownProps {
     value: string | number;
     onChange: () => void;
 }
-
 export const Dropdown: React.FC<DropdownProps> = ({ id, label, options, value, onChange }) => {
     return (
         <div className="dropdown">

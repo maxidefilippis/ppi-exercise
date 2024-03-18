@@ -1,5 +1,4 @@
 import React from 'react';
-
 import './index.scss';
 
 interface InputProps {
@@ -10,7 +9,6 @@ interface InputProps {
     onChange: () => void;
     placeholder: string;
 }
-
 export const Input: React.FC<InputProps> = ({ id, label, type, value, onChange, placeholder }) => {
     return (
         <div className="input">

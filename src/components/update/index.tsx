@@ -2,7 +2,7 @@ import React from 'react';
 
 import './index.scss';
 
-export const LastUpdated: React.FC = () => {
+export const Update: React.FC = () => {
     return (
         <div className="lastUpdated">
             <p>

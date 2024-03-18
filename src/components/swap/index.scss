@@ -1,0 +1,11 @@
+.swap {
+    display: flex;
+    justify-content: flex-start;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    @media (min-width: 500px) {
+        align-items: end;
+    }
+}
