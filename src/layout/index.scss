@@ -18,24 +18,9 @@
     background: linear-gradient(#1a8dff, #1a8dff) 0 0 / 100% 300px, linear-gradient(white, white) 0 300px / 100% calc(100% - 300px);
     background-repeat: no-repeat;
     padding-inline: 30px;
-    &__title {
-        text-align: center;
-        padding-block: 25px;
-        h1 {
-            font-size: 32px;
-            font-weight: 600;
-            color: #fff;
-        }
-    }
     @media (min-width: 500px) {
         padding-inline: 50px;
         background: linear-gradient(#1a8dff, #1a8dff) 0 0 / 100% 200px, linear-gradient(white, white) 0 200px / 100% calc(100% - 200px);
         background-repeat: no-repeat;
-        &__title {
-            padding-block: 35px;
-            h1 {
-                font-size: 22px;
-            }
-        }
     }
 }
