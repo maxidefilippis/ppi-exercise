@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { getUTCDateTime } from '../../functions/getUTCDateTime';
 import { Currency, CurrencyListApi } from '../../models/currency';
 import { home } from '../../translations/en/home';
 
@@ -13,6 +14,7 @@ interface GlobalState {
     currenciesApi: CurrencyListApi;
     currencies: Currency[];
     exchangeRates: ExchangeData;
+    update?: string;
 }
 
 const initialState: GlobalState = {
@@ -68,6 +70,9 @@ export const globalSlice = createSlice({
         setExchangeRates: (state, action: PayloadAction<ExchangeData>) => {
             state.exchangeRates = action.payload;
         },
+        setUpdatedTime: (state) => {
+            state.update = getUTCDateTime();
+        },
     },
 });
 
@@ -82,6 +87,7 @@ export const {
     updateHomeTitle,
     setConvertedAmounts,
     setExchangeRates,
+    setUpdatedTime,
 } = globalSlice.actions;
 
 export default globalSlice.reducer;
