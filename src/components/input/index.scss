@@ -18,12 +18,13 @@
     }
 }
 
-.inputContainer{
+.inputContainer {
     display: flex;
     align-items: center;
     > p {
         position: fixed;
         margin-left: 10px;
         font-weight: 600;
+        color: #177fe5;
     }
 }

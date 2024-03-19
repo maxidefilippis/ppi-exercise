@@ -1,23 +1,27 @@
+import { Currency } from '../../models/currency';
 import './index.scss';
 
 interface DropdownProps {
     id: string;
     label: string;
-    options: string[];
-    value: string | number;
-    onChange: () => void;
+    options: Currency[];
+    value: Currency | undefined;
+    onChange: any;
 }
 export const Dropdown: React.FC<DropdownProps> = ({ id, label, options, value, onChange }) => {
     return (
         <div className="dropdown">
             <label htmlFor={id}>{label}</label>
             <select
-                value={value}
+                value={value?.key}
                 onChange={onChange}
             >
                 {options.map((option, index) => (
-                    <option key={index} value={option}>
-                        {option}
+                    <option
+                        key={index}
+                        value={option.key}
+                    >
+                        {option.name}
                     </option>
                 ))}
             </select>

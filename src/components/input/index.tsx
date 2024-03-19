@@ -4,10 +4,10 @@ interface InputProps {
     id: string;
     label: string;
     type: string;
-    value: string | number;
-    onChange: () => void;
-    placeholder?: string;
+    onChange: any;
     symbol?: string;
+    placeholder?: string;
+    value?: number;
 }
 export const Input: React.FC<InputProps> = ({ id, label, type, value, onChange, placeholder, symbol }) => {
     return (
@@ -22,7 +22,7 @@ export const Input: React.FC<InputProps> = ({ id, label, type, value, onChange, 
                     value={value}
                     onChange={onChange}
                     placeholder={placeholder}
-                    style={symbol ? { paddingLeft: '24px' } : {}}
+                    style={symbol ? { paddingLeft: `${symbol.length === 1 ? 26 : 16 * symbol.length}px` } : {}}
                 />
             </div>
         </div>

@@ -1,38 +1,60 @@
 import { Card } from '../../../../components/card';
 import { Dropdown } from '../../../../components/dropdown';
+import { findCurrencyByKey } from '../../../../components/functions/findCurrencyInArray';
 import { Input } from '../../../../components/input';
 import { Swap } from '../../../../components/swap';
 import { Text } from '../../../../components/text';
 import { Update } from '../../../../components/update';
+import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
+import { setAmount, setCurrencyFrom, setCurrencyTo, swapCurrencies } from '../../../../redux/reducers/global';
 import { home } from '../../../../translations/en/home';
 import './index.scss';
 
 export const HomeBody = () => {
+    const dispatch = useAppDispatch();
+    const { amount, from, to, currencies } = useAppSelector((store) => store.global);
+
+    const handleAmountChange = (event: any) => {
+        dispatch(setAmount(event.target.value));
+    };
+    const handleFromChange = (event: any) => {
+        dispatch(setCurrencyFrom(findCurrencyByKey(currencies, event.target.value)));
+    };
+    const handleToChange = (event: any) => {
+        dispatch(setCurrencyTo(event.target.value));
+
+        dispatch(setCurrencyTo(findCurrencyByKey(currencies, event.target.value)));
+    };
+
+    const handleSwap = () => {
+        dispatch(swapCurrencies());
+    };
+
     return (
         <Card>
             <div className="form">
                 <Input
                     id={home.amount.toLocaleLowerCase()}
                     label={home.amount}
-                    onChange={() => {}}
                     type="number"
-                    value={100}
-                    symbol="$"
+                    value={amount}
+                    onChange={handleAmountChange}
+                    symbol={from?.symbol}
                 />
                 <Dropdown
                     id={home.from.toLocaleLowerCase()}
                     label={home.from}
-                    onChange={() => {}}
-                    options={['Euro', 'Dollar']}
-                    value={'Euro'}
+                    onChange={handleFromChange}
+                    options={currencies}
+                    value={from}
                 />
-                <Swap />
+                <Swap onClick={handleSwap} />
                 <Dropdown
                     id={home.to.toLocaleLowerCase()}
                     label={home.to}
-                    onChange={() => {}}
-                    value={'Dollar'}
-                    options={['Euro', 'Dollar']}
+                    onChange={handleToChange}
+                    options={currencies}
+                    value={to}
                 />
             </div>
             <div className="convertion">

@@ -1,9 +1,15 @@
 import convert from '../../assets/convert.svg';
 import './index.scss';
 
-export const Swap: React.FC = () => {
+interface SwapProps {
+    onClick: () => void;
+}
+export const Swap: React.FC<SwapProps> = ({ onClick }) => {
     return (
-        <button className="swap">
+        <button
+            className="swap"
+            onClick={onClick}
+        >
             <img src={convert} />
         </button>
     );
