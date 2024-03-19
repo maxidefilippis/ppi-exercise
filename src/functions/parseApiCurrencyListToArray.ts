@@ -1,4 +1,4 @@
-import { Currency, CurrencyListApi } from '../../models/currency';
+import { Currency, CurrencyListApi } from '../models/currency';
 
 export function parseApiCurrencyListToArray(currencyListApi: CurrencyListApi): Currency[] {
     const currencyArray: Currency[] = [];

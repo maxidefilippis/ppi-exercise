@@ -1,12 +1,12 @@
 import { Card } from '../../../../components/card';
 import { Dropdown } from '../../../../components/dropdown';
-import { findCurrencyByKey } from '../../../../components/functions/findCurrencyInArray';
+import { findCurrencyByKey } from '../../../../functions/findCurrencyInArray';
 import { Input } from '../../../../components/input';
 import { Swap } from '../../../../components/swap';
 import { Text } from '../../../../components/text';
 import { Update } from '../../../../components/update';
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
-import { setAmount, setCurrencyFrom, setCurrencyTo, swapCurrencies } from '../../../../redux/reducers/global';
+import { setAmount, setCurrencyFrom, setCurrencyTo, swapCurrencies, updateHomeTitle } from '../../../../redux/reducers/global';
 import { home } from '../../../../translations/en/home';
 import './index.scss';
 
@@ -16,14 +16,17 @@ export const HomeBody = () => {
 
     const handleAmountChange = (event: any) => {
         dispatch(setAmount(event.target.value));
+        dispatch(updateHomeTitle());
     };
+
     const handleFromChange = (event: any) => {
         dispatch(setCurrencyFrom(findCurrencyByKey(currencies, event.target.value)));
+        dispatch(updateHomeTitle());
     };
-    const handleToChange = (event: any) => {
-        dispatch(setCurrencyTo(event.target.value));
 
+    const handleToChange = (event: any) => {
         dispatch(setCurrencyTo(findCurrencyByKey(currencies, event.target.value)));
+        dispatch(updateHomeTitle());
     };
 
     const handleSwap = () => {

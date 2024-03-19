@@ -1,3 +1,5 @@
+import { apiMsg } from '../translations/en/api';
+
 export async function apiConnect(url: string, method: string, body: any = null): Promise<any> {
     try {
         const options: RequestInit = {
@@ -13,7 +15,7 @@ export async function apiConnect(url: string, method: string, body: any = null):
 
         return response;
     } catch (error: any) {
-        console.error('Error al conectar con la API:', error.message);
+        console.error(apiMsg.error, error.message);
         throw error;
     }
 }

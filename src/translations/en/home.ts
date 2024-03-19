@@ -1,5 +1,5 @@
 export const home = {
-    title: '100 EUR to USD - Convert Euros to US Dollars',
+    title: 'Convert currencies',
     amount: 'Amount',
     from: 'From',
     to: 'To',

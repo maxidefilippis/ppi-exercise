@@ -1,8 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Currency, CurrencyListApi } from '../../models/currency';
+import { home } from '../../translations/en/home';
 
 interface GlobalState {
     loading: boolean;
+    homeTitle: string;
     amount?: number;
     from?: Currency;
     to?: Currency;
@@ -12,6 +14,7 @@ interface GlobalState {
 
 const initialState: GlobalState = {
     loading: false,
+    homeTitle: home.title,
     currenciesApi: {},
     currencies: [],
 };
@@ -47,9 +50,13 @@ export const globalSlice = createSlice({
             state.from = state.to;
             state.to = aux;
         },
+        updateHomeTitle: (state) => {
+            state.homeTitle = `${state.amount} ${state.from?.key} to ${state.to?.key} - Convert ${state.from?.name} to ${state.to?.name}`;
+        },
     },
 });
 
-export const { setLoading, setAmount, setCurrencyApiList, setCurrencies, setCurrencyFrom, setCurrencyTo, swapCurrencies } = globalSlice.actions;
+export const { setLoading, setAmount, setCurrencyApiList, setCurrencies, setCurrencyFrom, setCurrencyTo, swapCurrencies, updateHomeTitle } =
+    globalSlice.actions;
 
 export default globalSlice.reducer;

@@ -1,4 +1,4 @@
-import { Currency } from '../../models/currency';
+import { Currency } from '../models/currency';
 
 export const findCurrencyByKey = (currencyArray: Currency[], keyToFind: string) => {
     const currencyFrom = currencyArray.find((currency) => currency.key === keyToFind);

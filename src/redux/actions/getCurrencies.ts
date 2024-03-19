@@ -1,6 +1,6 @@
 import { CurrencyApi } from '../../api/currencyApi';
-import { findCurrencyByKey } from '../../components/functions/findCurrencyInArray';
-import { parseApiCurrencyListToArray } from '../../components/functions/parseApiCurrencyListToArray';
+import { findCurrencyByKey } from '../../functions/findCurrencyInArray';
+import { parseApiCurrencyListToArray } from '../../functions/parseApiCurrencyListToArray';
 import { defaultValues } from '../../constants/defaultValues';
 import { setAmount, setCurrencies, setCurrencyApiList, setCurrencyFrom, setCurrencyTo, setLoading } from '../reducers/global';
 import { AppThunk } from '../store';
@@ -16,10 +16,9 @@ export const getCurrenciesAction = (): AppThunk => async (dispatch) => {
 
         dispatch(setCurrencyApiList(response));
         dispatch(setCurrencies(currencyArray));
-
+        
         dispatch(setCurrencyFrom(findCurrencyByKey(currencyArray, defaultValues.from)));
         dispatch(setCurrencyTo(findCurrencyByKey(currencyArray, defaultValues.to)));
-        
         dispatch(setAmount(defaultValues.amount));
     } catch (error: any) {
         console.error(error);
