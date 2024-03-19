@@ -13,6 +13,7 @@ export const Dropdown: React.FC<DropdownProps> = ({ id, label, options, value, o
         <div className="dropdown">
             <label htmlFor={id}>{label}</label>
             <select
+                id={id}
                 value={value?.key}
                 onChange={onChange}
             >

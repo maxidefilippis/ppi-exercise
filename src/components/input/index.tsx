@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import './index.scss';
 
 interface InputProps {
@@ -10,11 +11,21 @@ interface InputProps {
     value?: number;
 }
 export const Input: React.FC<InputProps> = ({ id, label, type, value, onChange, placeholder, symbol }) => {
+    const divRef = useRef<HTMLDivElement>(null);
+    const [width, setWidth] = useState(0);
+
+    useEffect(() => {
+        if (divRef.current) {
+            const divWidth: number = divRef.current.clientWidth;
+            setWidth(divWidth);
+        }
+    }, [symbol]);
+
     return (
         <div className="input">
             <label htmlFor={id}>{label}</label>
             <div className="inputContainer">
-                {symbol && <p>{symbol}</p>}
+                {symbol && <p ref={divRef}>{symbol}</p>}
                 <input
                     id={id}
                     name={id}
@@ -22,7 +33,7 @@ export const Input: React.FC<InputProps> = ({ id, label, type, value, onChange, 
                     value={value}
                     onChange={onChange}
                     placeholder={placeholder}
-                    style={symbol ? { paddingLeft: `${symbol.length === 1 ? 26 : 16 * symbol.length}px` } : {}}
+                    style={symbol ? { paddingLeft: `${width + 18}px` } : {}}
                 />
             </div>
         </div>

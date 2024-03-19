@@ -7,7 +7,7 @@ export class CurrencyApi {
         let url = `https://api.vatcomply.com/currencies`;
         return await apiConnect(url, ApiMethods.GET);
     }
-    async getRatesByBase(base: string): Promise<any> {
+    async getRatesByBase(base: string): Promise<ExchangeData> {
         let url = `https://api.vatcomply.com/rates?base=${base}`;
         return await apiConnect(url, ApiMethods.GET);
     }

@@ -21,10 +21,10 @@
 .inputContainer {
     display: flex;
     align-items: center;
+    position: relative;
     > p {
-        position: fixed;
-        margin-left: 10px;
+        position: absolute;
+        left: 14px;
         font-weight: 600;
-        color: #177fe5;
     }
 }

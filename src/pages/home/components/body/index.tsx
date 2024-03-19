@@ -1,22 +1,23 @@
 import { Card } from '../../../../components/card';
 import { Dropdown } from '../../../../components/dropdown';
-import { findCurrencyByKey } from '../../../../functions/findCurrencyInArray';
 import { Input } from '../../../../components/input';
 import { Swap } from '../../../../components/swap';
 import { Text } from '../../../../components/text';
 import { Update } from '../../../../components/update';
+import { findCurrencyByKey } from '../../../../functions/findCurrencyInArray';
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
-import { setAmount, setCurrencyFrom, setCurrencyTo, swapCurrencies, updateHomeTitle } from '../../../../redux/reducers/global';
+import { setAmount, setConvertedAmounts, setCurrencyFrom, setCurrencyTo, swapCurrencies, updateHomeTitle } from '../../../../redux/reducers/global';
 import { home } from '../../../../translations/en/home';
 import './index.scss';
 
 export const HomeBody = () => {
     const dispatch = useAppDispatch();
-    const { amount, from, to, currencies } = useAppSelector((store) => store.global);
+    const { amount, convertedAmountFrom, convertedAmountTo, from, to, currencies } = useAppSelector((store) => store.global);
 
     const handleAmountChange = (event: any) => {
         dispatch(setAmount(event.target.value));
         dispatch(updateHomeTitle());
+        dispatch(setConvertedAmounts());
     };
 
     const handleFromChange = (event: any) => {
@@ -63,12 +64,12 @@ export const HomeBody = () => {
             <div className="convertion">
                 <div className="convertion__information">
                     <div className="convertion__byFrom">
-                        <Text text={'1.00 Euro ='} />
-                        <Text text={'1.0627478 US Dollars'} />
+                        <Text text={`${amount} ${from?.name} =`} />
+                        <Text text={`${convertedAmountFrom} ${to?.name}`} />
                     </div>
                     <Text
                         classes="convertion__byTo"
-                        text={'1 USD = 0.941004 EUR'}
+                        text={`1 ${to?.key} = ${convertedAmountTo} ${from?.key}`}
                     />
                 </div>
                 <div className="convertion__lastUpdated">

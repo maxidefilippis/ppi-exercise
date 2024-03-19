@@ -6,10 +6,13 @@ interface GlobalState {
     loading: boolean;
     homeTitle: string;
     amount?: number;
+    convertedAmountTo?: number;
+    convertedAmountFrom?: number;
     from?: Currency;
     to?: Currency;
     currenciesApi: CurrencyListApi;
     currencies: Currency[];
+    exchangeRates: ExchangeData;
 }
 
 const initialState: GlobalState = {
@@ -17,6 +20,7 @@ const initialState: GlobalState = {
     homeTitle: home.title,
     currenciesApi: {},
     currencies: [],
+    exchangeRates: {} as ExchangeData,
 };
 
 export const globalSlice = createSlice({
@@ -31,6 +35,14 @@ export const globalSlice = createSlice({
                 state.amount = action.payload;
             } else {
                 state.amount = 0;
+            }
+        },
+        setConvertedAmounts: (state) => {
+            if (state.amount && state.to) {
+                state.convertedAmountFrom = state.amount * state.exchangeRates.rates[state.to.key];
+            }
+            if (state.to) {
+                state.convertedAmountTo = 1 / state.exchangeRates.rates[state.to.key];
             }
         },
         setCurrencyApiList: (state, action: PayloadAction<CurrencyListApi>) => {
@@ -53,10 +65,23 @@ export const globalSlice = createSlice({
         updateHomeTitle: (state) => {
             state.homeTitle = `${state.amount} ${state.from?.key} to ${state.to?.key} - Convert ${state.from?.name} to ${state.to?.name}`;
         },
+        setExchangeRates: (state, action: PayloadAction<ExchangeData>) => {
+            state.exchangeRates = action.payload;
+        },
     },
 });
 
-export const { setLoading, setAmount, setCurrencyApiList, setCurrencies, setCurrencyFrom, setCurrencyTo, swapCurrencies, updateHomeTitle } =
-    globalSlice.actions;
+export const {
+    setLoading,
+    setAmount,
+    setCurrencyApiList,
+    setCurrencies,
+    setCurrencyFrom,
+    setCurrencyTo,
+    swapCurrencies,
+    updateHomeTitle,
+    setConvertedAmounts,
+    setExchangeRates,
+} = globalSlice.actions;
 
 export default globalSlice.reducer;
