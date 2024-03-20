@@ -51,8 +51,8 @@ export const HomeBody = () => {
                 <>
                     <div className="form">
                         <Input
-                            id={home.amount.toLocaleLowerCase()}
-                            label={home.amount}
+                            id={home.labelAmount.toLocaleLowerCase()}
+                            label={home.labelAmount}
                             type="number"
                             value={amount}
                             onChange={handleAmountChange}
@@ -60,8 +60,8 @@ export const HomeBody = () => {
                         />
 
                         <Dropdown
-                            id={home.from.toLocaleLowerCase()}
-                            label={home.from}
+                            id={home.labelFrom.toLocaleLowerCase()}
+                            label={home.labelFrom}
                             onChange={handleFromChange}
                             options={currencies}
                             value={currencyFrom}
@@ -76,8 +76,8 @@ export const HomeBody = () => {
                         )}
 
                         <Dropdown
-                            id={home.to.toLocaleLowerCase()}
-                            label={home.to}
+                            id={home.labelTo.toLocaleLowerCase()}
+                            label={home.labelTo}
                             onChange={handleToChange}
                             options={currencies}
                             value={currencyTo}

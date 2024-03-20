@@ -4,11 +4,11 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    gap: 5px;
+    gap: 20px;
     &__block {
         width: 100%;
         height: 10px;
-        background-color: #f2f2f2;
+        background-color: var(--grey-skeleton);
         margin: 0 5px;
         animation: loading 1.5s ease-in-out infinite;
         &:nth-child(1) {
@@ -22,7 +22,6 @@
         }
     }
     @media (min-width: 500px) {
-        gap: 20px;
         &__block {
             height: 25px;
         }

@@ -6,7 +6,7 @@
     h1 {
         font-size: 32px;
         font-weight: 600;
-        color: #fff;
+        color: var(--white);
     }
     @media (min-width: 500px) {
         padding-block: 70px;

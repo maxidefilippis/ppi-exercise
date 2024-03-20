@@ -1,4 +1,5 @@
 import { useAppSelector } from '../../redux/hooks';
+import { home } from '../../translations/en/home';
 import { CurrencyLink } from '../currencyLink';
 import { Skeleton } from '../skeleton';
 import './index.scss';
@@ -17,9 +18,9 @@ export const Update: React.FC = () => {
             ) : (
                 <p>
                     <CurrencyLink currency={currencyFrom} />
-                    to
+                    {home.to}
                     <CurrencyLink currency={currencyTo} />
-                    conversion — {update}
+                    {home.conversion} — {update}
                 </p>
             )}
         </div>
