@@ -1,6 +1,6 @@
 # PPI Currency Converter
 
-Bienvenido a la plataforma de conversión de monedas.
+Bienvenido a la plataforma de conversión de monedas de PPI.
 
 ## Instalación
 
@@ -34,3 +34,9 @@ npm install
 ```
 
 5. Una vez que el servidor esté corriendo, puedes acceder a la aplicación desde tu navegador web visitando http://localhost:5173, donde puerto es el puerto en el que se está ejecutando el servidor.
+
+## Deploy
+
+```bash
+ https://ppi-exercise.vercel.app/
+```
