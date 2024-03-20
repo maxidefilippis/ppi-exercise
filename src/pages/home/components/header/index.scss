@@ -3,18 +3,15 @@
     padding-block: 25px;
     overflow: hidden;
     word-wrap: break-word;
-   
     h1 {
         font-size: 32px;
         font-weight: 600;
         color: #fff;
     }
     @media (min-width: 500px) {
-        &__title {
-            padding-block: 35px;
-            h1 {
-                font-size: 22px;
-            }
+        padding-block: 70px;
+        h1 {
+            font-size: 40px;
         }
     }
 }

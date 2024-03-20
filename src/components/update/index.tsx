@@ -11,8 +11,8 @@ export const Update: React.FC = () => {
             {ratesLoading ? (
                 <Skeleton
                     rows={1}
-                    heigth={12}
-                    width={285}
+                    heigth={20}
+                    width={500}
                 />
             ) : (
                 <p>

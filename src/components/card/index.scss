@@ -8,10 +8,11 @@
     box-shadow: 0px 5px 5px 0px #0000001a;
     padding: 20px;
     width: 100%;
-    gap: 25px;
+    gap: 40px;
     min-height: 50vh;
     @media (min-width: 500px) {
-        padding: 20px 30px;
-        gap: 50px;
+        padding: 45px;
+        gap: 100px;
+        justify-content: space-between;
     }
 }

@@ -1,4 +1,6 @@
 .header {
+    display: flex;
+    align-items: center;
     background-color: #0e1342;
     height: 60px;
     padding: 20px 15px;
@@ -9,7 +11,8 @@
         color: #fff;
     }
     @media (min-width: 500px) {
-        padding-inline: 30px;
+        height: 75px;
+        padding-inline: 32px;
     }
 }
 
@@ -19,8 +22,9 @@
     background-repeat: no-repeat;
     padding-inline: 30px;
     @media (min-width: 500px) {
-        padding-inline: 50px;
-        background: linear-gradient(#1a8dff, #1a8dff) 0 0 / 100% 200px, linear-gradient(white, white) 0 200px / 100% calc(100% - 200px);
+        min-height: calc(100vh - 75px);
+        padding-inline: 100px;
+        background: linear-gradient(#1a8dff, #1a8dff) 0 0 / 100% 350px, linear-gradient(white, white) 0 350px / 100% calc(100% - 350px);
         background-repeat: no-repeat;
     }
 }

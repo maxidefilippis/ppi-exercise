@@ -21,6 +21,12 @@
             animation-delay: 0.5s;
         }
     }
+    @media (min-width: 500px) {
+        gap: 20px;
+        &__block {
+            height: 25px;
+        }
+    }
 }
 
 @keyframes loading {
