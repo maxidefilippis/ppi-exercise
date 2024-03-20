@@ -1,16 +1,19 @@
-.lastUpdated {
-    padding-top: 10px;
+.update {
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
     p {
         color: #000;
         font-size: 12px;
         font-weight: 300;
         line-height: 1.5;
         text-align: left;
-        padding-top: 0 10px;
+        padding: 0 10px;
     }
     @media (min-width: 500px) {
+        justify-content: flex-end;
         p {
-            font-size: 8px;
+            font-size: 8.5px;
             text-align: right;
             padding: 0;
         }

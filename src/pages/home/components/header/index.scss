@@ -1,6 +1,9 @@
 .homeTitle {
     text-align: center;
     padding-block: 25px;
+    overflow: hidden;
+    word-wrap: break-word;
+   
     h1 {
         font-size: 32px;
         font-weight: 600;

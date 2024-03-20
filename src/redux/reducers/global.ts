@@ -1,26 +1,26 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getUTCDateTime } from '../../functions/getUTCDateTime';
-import { Currency, CurrencyListApi } from '../../models/currency';
+import { Currency } from '../../models/currency';
 import { home } from '../../translations/en/home';
 
 interface GlobalState {
-    loading: boolean;
+    ratesLoading: boolean;
+    currencyLoading: boolean;
     homeTitle: string;
     amount?: number;
     convertedAmountTo?: number;
     convertedAmountFrom?: number;
-    from?: Currency;
-    to?: Currency;
-    currenciesApi: CurrencyListApi;
+    currencyFrom?: Currency;
+    currencyTo?: Currency;
     currencies: Currency[];
     exchangeRates: ExchangeData;
     update?: string;
 }
 
 const initialState: GlobalState = {
-    loading: false,
+    ratesLoading: false,
+    currencyLoading: false,
     homeTitle: home.title,
-    currenciesApi: {},
     currencies: [],
     exchangeRates: {} as ExchangeData,
 };
@@ -29,10 +29,14 @@ export const globalSlice = createSlice({
     name: 'global',
     initialState,
     reducers: {
-        setLoading: (state, action: PayloadAction<boolean>) => {
-            state.loading = action.payload;
+        setRatesLoading: (state, action: PayloadAction<boolean>) => {
+            state.ratesLoading = action.payload;
+        },
+        setCurrencyLoading: (state, action: PayloadAction<boolean>) => {
+            state.currencyLoading = action.payload;
         },
         setAmount: (state, action: PayloadAction<number>) => {
+            if (!action.payload) state.amount = 0;
             if (action.payload >= 0) {
                 state.amount = action.payload;
             } else {
@@ -40,32 +44,31 @@ export const globalSlice = createSlice({
             }
         },
         setConvertedAmounts: (state) => {
-            if (state.amount && state.to) {
-                state.convertedAmountFrom = state.amount * state.exchangeRates.rates[state.to.key];
+            if (state.amount && state.currencyTo) {
+                state.convertedAmountFrom = state.amount * state.exchangeRates.rates[state.currencyTo.key];
             }
-            if (state.to) {
-                state.convertedAmountTo = 1 / state.exchangeRates.rates[state.to.key];
+            if (state.currencyTo) {
+                state.convertedAmountTo = 1 / state.exchangeRates.rates[state.currencyTo.key];
             }
-        },
-        setCurrencyApiList: (state, action: PayloadAction<CurrencyListApi>) => {
-            state.currenciesApi = action.payload;
         },
         setCurrencies: (state, action: PayloadAction<Currency[]>) => {
             state.currencies = action.payload;
         },
         setCurrencyFrom: (state, action: PayloadAction<Currency>) => {
-            state.from = action.payload;
+            state.currencyFrom = action.payload;
         },
         setCurrencyTo: (state, action: PayloadAction<Currency>) => {
-            state.to = action.payload;
+            state.currencyTo = action.payload;
         },
         swapCurrencies: (state) => {
-            const aux = state.from;
-            state.from = state.to;
-            state.to = aux;
+            const aux = state.currencyFrom;
+            state.currencyFrom = state.currencyTo;
+            state.currencyTo = aux;
         },
         updateHomeTitle: (state) => {
-            state.homeTitle = `${state.amount} ${state.from?.key} to ${state.to?.key} - Convert ${state.from?.name} to ${state.to?.name}`;
+            const amount = state.amount ? (state.amount.toString().length > 10 ? `${state.amount.toString().substring(0, 10)}..` : state.amount) : '';
+
+            state.homeTitle = `${amount} ${state.currencyFrom?.key} to ${state.currencyTo?.key} - Convert ${state.currencyFrom?.name} to ${state.currencyTo?.name}`;
         },
         setExchangeRates: (state, action: PayloadAction<ExchangeData>) => {
             state.exchangeRates = action.payload;
@@ -77,9 +80,9 @@ export const globalSlice = createSlice({
 });
 
 export const {
-    setLoading,
+    setRatesLoading,
+    setCurrencyLoading,
     setAmount,
-    setCurrencyApiList,
     setCurrencies,
     setCurrencyFrom,
     setCurrencyTo,

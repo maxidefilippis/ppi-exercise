@@ -14,7 +14,9 @@ import './index.scss';
 
 export const HomeBody = () => {
     const dispatch = useAppDispatch();
-    const { amount, convertedAmountFrom, convertedAmountTo, from, to, currencies, loading } = useAppSelector((store) => store.global);
+    const { amount, convertedAmountFrom, convertedAmountTo, currencyFrom, currencyTo, currencies, currencyLoading, ratesLoading } = useAppSelector(
+        (store) => store.global,
+    );
 
     const handleAmountChange = (event: any) => {
         dispatch(setAmount(event.target.value));
@@ -40,80 +42,72 @@ export const HomeBody = () => {
 
     return (
         <Card>
-            <div className="form">
-                {loading ? (
-                    <Skeleton
-                        rows={3}
-                        heigth={22}
-                    />
-                ) : (
-                    <Input
-                        id={home.amount.toLocaleLowerCase()}
-                        label={home.amount}
-                        type="number"
-                        value={amount}
-                        onChange={handleAmountChange}
-                        symbol={from?.symbol}
-                    />
-                )}
-                {loading ? (
-                    <Skeleton
-                        rows={3}
-                        heigth={22}
-                    />
-                ) : (
-                    <Dropdown
-                        id={home.from.toLocaleLowerCase()}
-                        label={home.from}
-                        onChange={handleFromChange}
-                        options={currencies}
-                        value={from}
-                    />
-                )}
+            {currencyLoading ? (
+                <Skeleton
+                    rows={10}
+                    heigth={20}
+                />
+            ) : (
+                <>
+                    <div className="form">
+                        <Input
+                            id={home.amount.toLocaleLowerCase()}
+                            label={home.amount}
+                            type="number"
+                            value={amount}
+                            onChange={handleAmountChange}
+                            symbol={currencyFrom?.symbol}
+                        />
 
-                {loading ? (
-                    <Spinner />
-                ) : (
-                    <Swap
-                        onClick={handleSwap}
-                        disabled={loading}
-                    />
-                )}
-
-                {loading ? (
-                    <Skeleton
-                        rows={3}
-                        heigth={22}
-                    />
-                ) : (
-                    <Dropdown
-                        id={home.to.toLocaleLowerCase()}
-                        label={home.to}
-                        onChange={handleToChange}
-                        options={currencies}
-                        value={to}
-                    />
-                )}
-            </div>
-            <div className="convertion">
-                {loading || !from || !to ? (
-                    <Skeleton
-                        rows={4}
-                        heigth={22}
-                    />
-                ) : (
-                    <>
-                        <div className="convertion__information">
-                            <div className="convertion__byFrom">
-                                <Text text={`${amount} ${from?.name} =`} />
-                                <Text text={`${convertedAmountFrom} ${to?.name}`} />
-                            </div>
-
-                            <Text
-                                classes="convertion__byTo"
-                                text={`1 ${to?.key} = ${convertedAmountTo} ${from?.key}`}
+                        <Dropdown
+                            id={home.from.toLocaleLowerCase()}
+                            label={home.from}
+                            onChange={handleFromChange}
+                            options={currencies}
+                            value={currencyFrom}
+                        />
+                        {ratesLoading ? (
+                            <Spinner />
+                        ) : (
+                            <Swap
+                                onClick={handleSwap}
+                                disabled={ratesLoading}
                             />
-                        </div>
+                        )}
+
+                        <Dropdown
+                            id={home.to.toLocaleLowerCase()}
+                            label={home.to}
+                            onChange={handleToChange}
+                            options={currencies}
+                            value={currencyTo}
+                        />
+                    </div>
+                    <div className="convertion">
+                        {!amount ? <div className="convertion__information" /> : null}
+                        {amount ? (
+                            <div className="convertion__information">
+                                {ratesLoading ? (
+                                    <Skeleton
+                                        rows={4}
+                                        heigth={20}
+                                    />
+                                ) : (
+                                    <>
+                                        <div className="convertion__byFrom">
+                                            <Text text={`${amount} ${currencyFrom?.name} =`} />
+                                            <Text text={`${convertedAmountFrom?.toFixed(2)} ${currencyTo?.name}`} />
+                                        </div>
+
+                                        <Text
+                                            classes="convertion__byTo"
+                                            text={`1 ${currencyTo?.key} = ${convertedAmountTo?.toFixed(2)} ${currencyFrom?.key}`}
+                                        />
+                                    </>
+                                )}
+                            </div>
+                        ) : null}
+
                         <div className="convertion__lastUpdated">
                             <Text
                                 classes="convertion__caution"
@@ -121,9 +115,9 @@ export const HomeBody = () => {
                             />
                             <Update />
                         </div>
-                    </>
-                )}
-            </div>
+                    </div>
+                </>
+            )}
         </Card>
     );
 };

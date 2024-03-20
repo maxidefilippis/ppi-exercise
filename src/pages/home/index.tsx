@@ -7,7 +7,7 @@ import { HomeFooter } from './components/footer';
 import { HomeHeader } from './components/header';
 
 export const Home = () => {
-    const { from } = useAppSelector((store) => store.global);
+    const { currencyFrom } = useAppSelector((store) => store.global);
     const dispacth = useAppDispatch();
 
     useEffect(() => {
@@ -15,8 +15,8 @@ export const Home = () => {
     }, []);
 
     useEffect(() => {
-        from && dispacth(getRatesByBaseAction(from.key));
-    }, [from]);
+        currencyFrom && dispacth(getRatesByBaseAction(currencyFrom.key));
+    }, [currencyFrom]);
 
     return (
         <>
