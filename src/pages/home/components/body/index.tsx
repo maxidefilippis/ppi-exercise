@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { Card } from '../../../../components/card';
 import { Dropdown } from '../../../../components/dropdown';
 import { Input } from '../../../../components/input';
@@ -16,6 +17,11 @@ export const HomeBody = () => {
     const dispatch = useAppDispatch();
     const { amount, convertedAmountFrom, convertedAmountTo, currencyFrom, currencyTo, currencies, currencyLoading, ratesLoading, exchangeRates } =
         useAppSelector((store) => store.global);
+
+    const currencyOptions = useMemo(
+        () => currencies.filter((currency) => exchangeRates?.rates?.hasOwnProperty(currency.key)),
+        [currencies, exchangeRates],
+    );
 
     const handleAmountChange = (event: any) => {
         dispatch(setAmount(event.target.value));
@@ -63,7 +69,7 @@ export const HomeBody = () => {
                             id={home.labelFrom.toLocaleLowerCase()}
                             label={home.labelFrom}
                             onChange={handleFromChange}
-                            options={currencies.filter((currency) => exchangeRates.rates.hasOwnProperty(currency.key))}
+                            options={currencyOptions}
                             value={currencyFrom}
                         />
                         {ratesLoading ? (
@@ -79,7 +85,7 @@ export const HomeBody = () => {
                             id={home.labelTo.toLocaleLowerCase()}
                             label={home.labelTo}
                             onChange={handleToChange}
-                            options={currencies.filter((currency) => exchangeRates.rates.hasOwnProperty(currency.key))}
+                            options={currencyOptions}
                             value={currencyTo}
                         />
                     </div>
