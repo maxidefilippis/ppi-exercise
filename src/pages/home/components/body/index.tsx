@@ -14,9 +14,8 @@ import './index.scss';
 
 export const HomeBody = () => {
     const dispatch = useAppDispatch();
-    const { amount, convertedAmountFrom, convertedAmountTo, currencyFrom, currencyTo, currencies, currencyLoading, ratesLoading } = useAppSelector(
-        (store) => store.global,
-    );
+    const { amount, convertedAmountFrom, convertedAmountTo, currencyFrom, currencyTo, currencies, currencyLoading, ratesLoading, exchangeRates } =
+        useAppSelector((store) => store.global);
 
     const handleAmountChange = (event: any) => {
         dispatch(setAmount(event.target.value));
@@ -64,7 +63,7 @@ export const HomeBody = () => {
                             id={home.labelFrom.toLocaleLowerCase()}
                             label={home.labelFrom}
                             onChange={handleFromChange}
-                            options={currencies}
+                            options={currencies.filter((currency) => exchangeRates.rates.hasOwnProperty(currency.key))}
                             value={currencyFrom}
                         />
                         {ratesLoading ? (
@@ -80,7 +79,7 @@ export const HomeBody = () => {
                             id={home.labelTo.toLocaleLowerCase()}
                             label={home.labelTo}
                             onChange={handleToChange}
-                            options={currencies}
+                            options={currencies.filter((currency) => exchangeRates.rates.hasOwnProperty(currency.key))}
                             value={currencyTo}
                         />
                     </div>
