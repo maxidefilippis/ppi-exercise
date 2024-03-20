@@ -38,6 +38,7 @@ export const HomeBody = () => {
 
     const handleSwap = () => {
         dispatch(swapCurrencies());
+        dispatch(updateHomeTitle());
     };
 
     return (
