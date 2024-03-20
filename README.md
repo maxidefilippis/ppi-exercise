@@ -1,7 +1,6 @@
 # PPI Currency Converter
 
-Bienvenido a la plataforma de conversión de monedas de PPI.
-Esta aplicación fue desarrollada con React, TypeScript, Redux y SASS.
+Bienvenido a la plataforma de conversión de monedas de PPI, desarrollada con React, TypeScript, Redux y SASS.
 
 ## Instalación
 
