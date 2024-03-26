@@ -37,7 +37,7 @@ npm install
 
 ## Deploy
 
-La aplicación fue desplegada y es accesible por el siguiente enlace:
+La aplicación fue desplegada en el siguiente enlace:
 
 ```bash
  https://ppi-exercise.vercel.app/
