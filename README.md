@@ -33,7 +33,7 @@ npm install
  npm run dev
 ```
 
-5. Una vez que el servidor esté corriendo, puedes acceder a la aplicación desde tu navegador web visitando http://localhost:5173, donde puerto es el puerto en el que se está ejecutando el servidor.
+5. Una vez que el servidor esté corriendo, puedes acceder a la aplicación desde tu navegador web visitando http://localhost:5173, o el puerto en el que se está ejecutando el servidor.
 
 ## Deploy
 
